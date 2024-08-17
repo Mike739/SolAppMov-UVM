@@ -1,0 +1,94 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tareas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="margin: 20px 10px; text-align: center; font-size: large; font-weight: bold;">
+    <ion-label>AGREGA UNA TAREA NUEVA</ion-label>
+  </div>
+
+  <ion-card>
+
+    <ion-item>
+      <ion-label>Titulo: </ion-label>
+      <ion-input [(ngModel)]="newTask.titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prioridad: </ion-label>
+      <ion-input [(ngModel)]="newTask.prioridad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripcion: </ion-label>
+      <ion-input [(ngModel)]="newTask.descripcion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Responsable: </ion-label>
+      <ion-input [(ngModel)]="newTask.responsable"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha Inicio: </ion-label>
+      <ion-input [(ngModel)]="newTask.fechaInicio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha Finali: </ion-label>
+      <ion-input [(ngModel)]="newTask.fechaFinal"></ion-input>
+    </ion-item>
+
+  </ion-card>
+
+  <div style="margin: 24px">
+    <ion-button (click)="save()" expand="block" shape="round" color="success">
+      Crear tarea
+    </ion-button>
+  </div>
+
+  @if(cargando){
+    <div style="text-align: center;">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+  }
+
+  <div style="margin: 20px 10px; text-align: center; font-size: large; font-weight: bold;">
+    <ion-label>TAREAS AGREGADAS</ion-label>
+  </div>
+
+  <ion-list>
+    @for (task of tasks; track $index) {
+      <ion-item>
+        <ion-label>
+            Titulo: {{task.titulo}}
+            <p>Prioridad: {{task.prioridad}}</p>
+            <p>Descripcion: {{task.descripcion}}</p>
+            <p>Responsable: {{task.responsable}}</p>
+            <p>fecha de inicio: {{task.fechaInicio}}</p>
+            <p>fecha de finalización: {{task.fechaFinal}}</p>
+        </ion-label>
+
+          <ion-button (click)="edit(task)">
+            <ion-icon slot="icon-only" name="create" size="large"></ion-icon>
+          </ion-button>
+
+          <ion-button (click)="trash(task)" color="danger">
+            <ion-icon slot="icon-only" name="trash" size="large"></ion-icon>
+          </ion-button>
+
+      </ion-item>
+    }
+  </ion-list>
+  
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "TaskConnect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
